@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This app will have you create a large number of prime numbers using AsyncTask, Thread, Looper and Handler. Generating a large set of primes is used often in cryptography --  it's computationally expensive and takes a long time. Your mission will be to generate these prime numbers without blocking the UI thread.
+This app will have you create a large number of prime numbers using AsyncTask. Generating a large set of primes is used often in cryptography --  it's computationally expensive and takes a long time. Your mission will be to generate these prime numbers without blocking the UI thread.
 
 ## Instructions
 
