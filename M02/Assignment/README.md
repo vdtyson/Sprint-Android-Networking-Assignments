@@ -39,7 +39,7 @@ B) In `actvity_main.xml` add a TextView to hold the results of the API call (cal
 
 *Make the TextView Scrollable:*
 
-Since a lot of countries will be listed, you can set the height of the TextView to: `android:layout_heigh"200dp"` and `android:scrollbars="vertical"`.
+Since a lot of countries will be listed, you can set the height of the TextView to: `android:layout_height="200dp"` and `android:scrollbars="vertical"`.
 
 Then then in your code, when you eventually set the `.text = ""` of this TextView, you can make it scrollable like so:
 
