@@ -1,12 +1,17 @@
 package com.lambdaschool.basicandroidnetworking.retrofit
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.lambdaschool.basicandroidnetworking.R
+import com.lambdaschool.basicandroidnetworking.model.AdviceMsg
 import kotlinx.android.synthetic.main.activity_retrofit.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: declare this activity handles Retrofit callbacks
-class RetrofitActivity : AppCompatActivity() {
+class RetrofitActivity : AppCompatActivity(), Callback<AdviceMsg> {
 
     companion object {
         private const val TAG = "RETROFIT"
@@ -17,16 +22,33 @@ class RetrofitActivity : AppCompatActivity() {
         setContentView(R.layout.activity_retrofit)
 
         fetchNetworkAPIRetrofitButton.setOnClickListener {
-
-            // TODO: Get advice without logging
+            AdviceRetriever().getRandomAdvice().enqueue(this)
         }
 
         fetchNetworkAPIOkHttpButton.setOnClickListener {
-            //TODO: Get advice with logging
+            AdviceRetriever().getRandomAdviceWithOkHttp().enqueue(this)
         }
     }
 
-    // TODO: Define callback for Retrofit onResponse
+    // Callback for Retrofit Call
+    override fun onResponse(call: Call<AdviceMsg>, response: Response<AdviceMsg>) {
+        Log.d("RETROFIT", "onResponse")
+        if (response.isSuccessful) {
+            val adviceMsg = response.body()
+            Log.d(TAG, adviceMsg?.getAdvice())
+            adviceTextRetrofit.text = adviceMsg?.getAdvice()
+        } else {
+            val response = "response not successful; ${response.errorBody().toString()}"
+            Log.d(TAG, response)
+            Toast.makeText(this@RetrofitActivity, response, Toast.LENGTH_SHORT).show()
+        }
+    }
 
-    // TODO: Define callback for Retrofit onFailure
+    // Callback for Retrofit Call
+    override fun onFailure(call: Call<AdviceMsg>, t: Throwable) {
+        t.printStackTrace()
+        val response = "faliure; ${t.printStackTrace()}"
+        Log.d(TAG, response)
+        Toast.makeText(this@RetrofitActivity, response, Toast.LENGTH_SHORT).show()
+    }
 }
