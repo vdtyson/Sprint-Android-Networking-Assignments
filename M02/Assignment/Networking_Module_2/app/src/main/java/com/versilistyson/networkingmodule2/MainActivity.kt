@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity(), Callback<OceaniaCountryList> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         Toast.makeText(this, "The call failed", Toast.LENGTH_SHORT).show()
     }
-
+//
     override fun onResponse(call: Call<OceaniaCountryList>, response: Response<OceaniaCountryList>) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         if (response.isSuccessful) {
